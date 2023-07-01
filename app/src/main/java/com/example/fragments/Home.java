@@ -31,6 +31,8 @@ public class Home extends Fragment {
         };
 
 
+
+
         String[] categoryOfProducts = {
                 "Bebidas",
                 "Bebidas",
