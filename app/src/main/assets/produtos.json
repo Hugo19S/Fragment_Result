@@ -1,0 +1,232 @@
+[
+  {
+    "name": "Vinho Tinto Mingorra",
+    "price_continente": 5.99,
+    "price_pingoDoce": 7.99,
+    "price_intermarche": 4.99,
+    "img": "R.drawable.vinho",
+    "category": "Bebidas",
+    "embalagem": "garrafa 75 cl",
+    "description": "Um vinho tinto de alta qualidade com sabor encorpado e aromas intensos."
+  },
+  {
+    "name": "Leite Mimosa meio Gordo",
+    "price_continente": 0.87,
+    "price_pingoDoce": 0.89,
+    "price_intermarche": 0.85,
+    "img": "R.drawable.leite",
+    "category": "Bebidas",
+    "embalagem": "1 lt",
+    "description": "Leite fresco e saboroso com teor de gordura médio."
+  },
+  {
+    "name": "Leite Gresso Meio Gordo",
+    "price_continente": 0.88,
+    "price_pingoDoce": 0.90,
+    "price_intermarche": 0.86,
+    "img": "R.drawable.leite_gresso",
+    "category": "Bebidas",
+    "embalagem": "1 lt",
+    "description": "Leite de qualidade com teor de gordura médio para um sabor cremoso."
+  },
+  {
+    "name": "Leite Terra Nostra",
+    "price_continente": 0.98,
+    "price_pingoDoce": 1.00,
+    "price_intermarche": 0.95,
+    "img": "R.drawable.leite_terra_nostra",
+    "category": "Bebidas",
+    "embalagem": "1 lt",
+    "description": "Leite fresco e natural de alta qualidade, perfeito para consumo diário."
+  },
+  {
+    "name": "Leite UHT Meio Gordo",
+    "price_continente": 0.90,
+    "price_pingoDoce": 0.92,
+    "price_intermarche": 0.88,
+    "img": "R.drawable.leite_agros",
+    "category": "Bebidas",
+    "embalagem": "1 lt",
+    "description": "Leite UHT com teor de gordura médio, adequado para armazenamento prolongado."
+  },
+  {
+    "name": "Leite Vigor Fresco",
+    "price_continente": 0.99,
+    "price_pingoDoce": 1.01,
+    "price_intermarche": 0.97,
+    "img": "R.drawable.leite_vigor",
+    "category": "Bebidas",
+    "embalagem": "1 lt",
+    "description": "Leite fresco e nutritivo para um começo de dia energético."
+  },
+  {
+    "name": "Leite Ucal Achocolatado",
+    "price_continente": 5.99,
+    "price_pingoDoce": 6.99,
+    "price_intermarche": 4.99,
+    "img": "R.drawable.leite_ucal",
+    "category": "Bebidas",
+    "embalagem": "6 x 250 ml",
+    "description": "Leite achocolatado cremoso e delicioso para desfrutar a qualquer hora."
+  },
+  {
+    "name": "Leite Milka Achocolatado",
+    "price_continente": 1.99,
+    "price_pingoDoce": 2.49,
+    "price_intermarche": 1.79,
+    "img": "R.drawable.leite_milka",
+    "category": "Bebidas",
+    "embalagem": "3 x 200 ml",
+    "description": "Leite achocolatado suave e indulgente com o sabor exclusivo do chocolate Milka."
+  },
+  {
+    "name": "Leite Prado Verde",
+    "price_continente": 2.99,
+    "price_pingoDoce": 2.89,
+    "price_intermarche": 2.79,
+    "img": "R.drawable.leite_prado_verde",
+    "category": "Bebidas",
+    "embalagem": "1 lt",
+    "description": "Leite fresco e saboroso do Prado Verde, uma marca de confiança."
+  },
+  {
+    "name": "Açucar",
+    "price_continente": 1.39,
+    "price_pingoDoce": 1.35,
+    "price_intermarche": 1.29,
+    "img": "R.drawable.acucar",
+    "category": "Mercearias",
+    "embalagem": "1 kg",
+    "description": "Açúcar refinado de alta qualidade para adoçar suas receitas favoritas."
+  },
+  {
+    "name": "Azeite Virgem Extra",
+    "price_continente": 6.35,
+    "price_pingoDoce": 6.29,
+    "price_intermarche": 6.49,
+    "img": "R.drawable.azeite",
+    "category": "Mercearias",
+    "embalagem": "75 cl",
+    "description": "Azeite de oliva virgem extra de primeira qualidade para realçar o sabor dos seus pratos."
+  },
+  {
+    "name": "Novilho para Estufar",
+    "price_continente": 8.29,
+    "price_pingoDoce": 8.49,
+    "price_intermarche": 8.19,
+    "img": "R.drawable.novilho",
+    "category": "Talho",
+    "embalagem": "880 gr",
+    "description": "Carne de novilho macia e suculenta, ideal para estufados e guisados."
+  },
+  {
+    "name": "Escalopes de Bovino",
+    "price_continente": 14.14,
+    "price_pingoDoce": 13.99,
+    "price_intermarche": 14.29,
+    "img": "R.drawable.bovino",
+    "category": "Talho",
+    "embalagem": "350 gr",
+    "description": "Bifes finos e tenros de carne bovina para preparar refeições rápidas e saborosas."
+  },
+  {
+    "name": "Dourada Média",
+    "price_continente": 6.12,
+    "price_pingoDoce": 6.29,
+    "price_intermarche": 5.99,
+    "img": "R.drawable.dourada",
+    "category": "Peixaria",
+    "embalagem": "500 gr",
+    "description": "Peixe dourada fresco e de tamanho médio, perfeito para grelhar ou assar."
+  },
+  {
+    "name": "Posta de Salmão",
+    "price_continente": 12.99,
+    "price_pingoDoce": 13.49,
+    "price_intermarche": 12.79,
+    "img": "R.drawable.salmao",
+    "category": "Peixaria",
+    "embalagem": "1 kg",
+    "description": "Postas de salmão fresco e suculento, ideais para grelhar ou assar."
+  },
+  {
+    "name": "Sofá Cama Click Clack",
+    "price_continente": 143.20,
+    "price_pingoDoce": 142.99,
+    "price_intermarche": 143.49,
+    "img": "R.drawable.sofa_cama",
+    "category": "Casa",
+    "embalagem": "1 un",
+    "description": "Um sofá confortável que pode ser facilmente transformado em uma cama espaçosa."
+  },
+  {
+    "name": "Sofá 2 Lugares Haia",
+    "price_continente": 271.20,
+    "price_pingoDoce": 270.99,
+    "price_intermarche": 271.49,
+    "img": "R.drawable.sofa_2",
+    "category": "Casa",
+    "embalagem": "1 un",
+    "description": "Um sofá elegante e compacto para complementar a decoração da sua sala."
+  },
+  {
+    "name": "Pão de Forma com Côdea",
+    "price_continente": 1.78,
+    "price_pingoDoce": 1.85,
+    "price_intermarche": 1.69,
+    "img": "R.drawable.pao_com_correa",
+    "category": "Padaria",
+    "embalagem": "700 gr",
+    "description": "Pão de forma macio e saboroso com uma deliciosa côdea dourada."
+  },
+  {
+    "name": "Pão de Centeio Serra da Estrela Fatiado",
+    "price_continente": 1.68,
+    "price_pingoDoce": 1.75,
+    "price_intermarche": 1.59,
+    "img": "R.drawable.pao_de_centeio",
+    "category": "Padaria",
+    "embalagem": "450 gr",
+    "description": "Pão de centeio fatiado feito com ingredientes selecionados da região da Serra da Estrela.******************00000000000000000000000000000000******************************"
+  },
+  {
+    "name": "Lixívia Delicada Gentil Higiene",
+    "price_continente": 4.86,
+    "price_pingoDoce": 4.79,
+    "price_intermarche": 4.99,
+    "img": "R.drawable.lixivia_higiene",
+    "category": "Higiene",
+    "embalagem": "1 un",
+    "description": "Lixívia delicada e gentil para garantir uma limpeza eficaz e higiene em sua casa."
+  },
+  {
+    "name": "Multisuperfícies Spray Lixívia e Higiene",
+    "price_continente": 2.24,
+    "price_pingoDoce": 2.19,
+    "price_intermarche": 2.29,
+    "img": "R.drawable.multisuperficies_spray",
+    "category": "Higiene",
+    "embalagem": "1 un",
+    "description": "Spray multisuperfícies com lixívia para desinfetar e limpar várias superfícies."
+  },
+  {
+    "name": "Banana",
+    "price_continente": 1.21,
+    "price_pingoDoce": 1.25,
+    "price_intermarche": 1.19,
+    "img": "R.drawable.banana",
+    "category": "Frutas",
+    "embalagem": "1 kg",
+    "description": "Bananas frescas e saudáveis, ricas em nutrientes essenciais."
+  },
+  {
+    "name": "Laranja",
+    "price_continente": 1.21,
+    "price_pingoDoce": 1.25,
+    "price_intermarche": 1.19,
+    "img": "R.drawable.laranja",
+    "category": "Frutas",
+    "embalagem": "1 kg",
+    "description": "Laranjas suculentas e cheias de vitamina C para um impulso energético."
+  }
+]

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+        <LinearLayout
+            android:id="@+id/relative1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            android:background="@drawable/rectangle"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp">
+
+
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/p"
+                tools:srcCompat="@tools:sample/avatars"
+                android:contentDescription="@string/logo" />
+
+
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="260dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/arrendondar2"
+                android:iconifiedByDefault="false"
+                android:imeOptions="actionSearch"
+                android:onClick="onSearch" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:src="@drawable/baseline_menu_24"
+                android:contentDescription="@string/menu" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/fragment_principal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/relative2"
+            android:layout_below="@+id/relative1"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp">
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/relative2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
+            android:orientation="horizontal"
+            android:background="@drawable/rectangle"
+            android:padding="1dp">
+
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:src="@drawable/outline_home_24"
+                android:contentDescription="@string/home_page" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:src="@drawable/list1"
+                android:contentDescription="@string/list" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:src="@drawable/baseline_qr_code_scanner_24"
+                android:contentDescription="@string/qr_code" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:src="@drawable/outline_person_24"
+                android:contentDescription="@string/profile" />
+
+        </LinearLayout>
+
+</RelativeLayout>

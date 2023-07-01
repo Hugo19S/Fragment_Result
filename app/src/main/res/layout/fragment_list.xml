@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".List">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/total_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/total_price_list_page"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/n_itens_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/total_textView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="300dp"
+            android:text="@string/itens_2"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="330dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/filter_foreground" />
+
+        <GridView
+            android:id="@+id/gridView_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/n_itens_textView"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
+            android:verticalSpacing="36dp" />
+
+    </RelativeLayout>
+</FrameLayout>

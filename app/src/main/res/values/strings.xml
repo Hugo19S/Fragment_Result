@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Price</string>
+    <string name="profile">Perfil</string>
+    <string name="qr_code">QR-Code</string>
+    <string name="list">Lista</string>
+    <string name="home_page">Pagina principal</string>
+    <string name="menu">Menu</string>
+    <string name="logo">logo</string>
+    <string name="textedit_email">e-mail</string>
+    <string name="login_text">Faça login e tenha os preços mais baratos!</string>
+    <string name="password_text">password</string>
+    <string name="listas">Listas</string>
+    <string name="config">Configurações</string>
+    <string name="help">Ajuda e feedback</string>
+    <string name="star">Classifique-nos</string>
+    <string name="alert">Não foram encontrados resultados para esta pesquisa.\npor favor, mude os filtros e tente novamente.\nou tente novamente mais tarde.</string>
+    <string name="imageProduct">Image Product</string>
+    <string name="detalhes_do_produto">Detalhes do produto:</string>
+    <string name="lojas_proximas">Lojas próximas</string>
+    <string name="todo">TODO</string>
+    <string name="total_price_list_page">Total = €3.48</string>
+    <string name="itens_2">itens : 2</string>
+    <string name="user_name">Nome de utilizador</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password">Confirmar Password</string>
+    <string name="registar">Registar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="entrar">Entrar</string>
+    <string name="criar_conta">Criar conta</string>
+    <string name="continuar_com_conta_google">Continuar com conta google</string>
+    <string name="continuar_com_conta_facebook">Continuar com conta facebook</string>
+    <string name="voltar">Voltar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
