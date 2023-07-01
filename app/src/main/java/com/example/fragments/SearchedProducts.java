@@ -1,6 +1,7 @@
 package com.example.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class SearchedProducts extends Fragment {
     private final String searchedTerm;
-    private boolean control;
+    private final boolean control;
     private final List<String> searchedNamesProduct = new ArrayList<>();
     private final List<Integer> searchedPhotoProduct = new ArrayList<>();
     private final List<double[]> priceOfProducts = new ArrayList<>();
@@ -74,11 +75,12 @@ public class SearchedProducts extends Fragment {
 
             GridView gridView = view.findViewById(R.id.gridview_searchPage);
             GridAdapter adapter = new GridAdapter(requireContext(), finalSearchedNamesProduct, finalSearchedPhotoProduct,
-                    1, priceProductArray, finalCategories, getChildFragmentManager());
+                    1, priceProductArray, finalCategories, requireActivity().getSupportFragmentManager());
             gridView.setAdapter(adapter);
         }
     }
 
+    @SuppressLint("DiscouragedApi")
     public void readJson() {
 
         JSONArray jsonArray;

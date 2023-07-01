@@ -1,16 +1,13 @@
 package com.example.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class Home extends Fragment {
 
@@ -34,10 +31,10 @@ public class Home extends Fragment {
 
 
         String[] categoryOfProducts = {
-                "Bebidas",
-                "Bebidas",
-                "Mercearias",
-                "Mercearias"
+                "Bebidas\nO leite UHT Mimosa Bem Essencial Meio-Gordo oferece a riqueza nutricional do leite com baixo teor de gordura .",
+                "Bebidas\nÁgua mineral proveniente de nascente portuguesa. A embalagem tem incorporado 25% de plástico reciclado de forma a diminuir o consumo de matéria prima virgem dando uma nova vida às embalagens.",
+                "Mercearias\nCafé em moagem fina indicado para máquinas expresso. Uma agradável experiência, incapaz de deixar alguém indiferente.",
+                "Mercearias\nAçúcar branco granulado para adoçar a sua refeição."
         };
 
         String[] namesCategories = {
@@ -69,35 +66,30 @@ public class Home extends Fragment {
                 R.drawable.all_frutas
         };
 
+
+
         double[][] price = {{0.99, 1.99, 2.99}, {2.49, 1.49, 0.59}, {1.49, 0.89, 3.59}, {0.69, 0.29, 0.95}};
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         GridView gridViewMostSearched = view.findViewById(R.id.gridview_mainPage_1);
         GridAdapter gridAdapterMostSearched = new GridAdapter(requireContext(), namesProduct, photoProduct,
-                1, price, categoryOfProducts, getChildFragmentManager());
+                1, price, categoryOfProducts, requireActivity().getSupportFragmentManager());
         gridViewMostSearched.setAdapter(gridAdapterMostSearched);
 
         GridView gridViewCategories = view.findViewById(R.id.gridview_mainPage_2);
         GridAdapter gridAdapterCategories = new GridAdapter(requireContext(), namesCategories, photoCategories,
-                2, null, null, getChildFragmentManager());
+                2, null, null, requireActivity().getSupportFragmentManager());
         gridViewCategories.setAdapter(gridAdapterCategories);
 
         gridViewCategories.setOnItemClickListener((paren, view1, position, id)->
-                nextFrame(namesCategories[position], false));
-
-        gridViewMostSearched.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show();
-            }
-        });
+                nextFrame(namesCategories[position]));
 
         return view;
     }
 
-    private void nextFrame(String namesCategory, boolean control) {
-        SearchedProducts searchedProducts = new SearchedProducts(namesCategory, control);
+    private void nextFrame(String namesCategory) {
+        SearchedProducts searchedProducts = new SearchedProducts(namesCategory, false);
         FragmentTransaction principal = requireActivity().getSupportFragmentManager().beginTransaction();
         principal.replace(R.id.fragment_principal, searchedProducts);
         principal.commit();

@@ -19,7 +19,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class GridAdapter extends BaseAdapter {
 
-    ProductDetails details;
     private final FragmentManager fragmentManager;
     private final String[] imageNames;
     private final int[] imagePhotos;
@@ -70,20 +69,20 @@ public class GridAdapter extends BaseAdapter {
                 holder.imageView = convertView.findViewById(R.id.imageView_items);
 
                 LinearLayout layout = convertView.findViewById(R.id.linearLayout3);
-                layout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                layout.setOnClickListener(v -> {
 
-                        Bundle bundle = new Bundle();
-                        bundle.putString("chave", "valor");
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("imageResource", imagePhotos[position]);
+                    bundle.putString("text", holder.textView.getText().toString());
+                    bundle.putDoubleArray("price", price[position]);
+                    bundle.putString("description", category[position]);
 
-                        details = new ProductDetails();
-                        details.setArguments(bundle);
+                    ProductDetails details = new ProductDetails();
+                    details.setArguments(bundle);
 
-                        FragmentTransaction transaction = fragmentManager.beginTransaction();
-                        transaction.replace(R.id.fragment_principal, details);
-                        transaction.commit();
-                    }
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.fragment_principal, details);
+                    transaction.commit();
                 });
 
 
@@ -106,6 +105,7 @@ public class GridAdapter extends BaseAdapter {
                 });
             }
 
+            assert convertView != null;
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

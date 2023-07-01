@@ -32,7 +32,7 @@ public class List extends Fragment {
 
         gridViewList = view.findViewById(R.id.gridView_list);
         gridAdapterList = new GridAdapter(requireContext(), namesProduct, photoProduct,
-                3, null, null, getChildFragmentManager());
+                3, null, null, requireActivity().getSupportFragmentManager());
         gridViewList.setAdapter(gridAdapterList);
         // Inflate the layout for this fragment
         return view;
