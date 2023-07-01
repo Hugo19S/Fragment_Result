@@ -3,19 +3,22 @@ package com.example.fragments;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
-    private ImageButton homeButton, listButton;
+    private ImageButton homeButton, listButton, menuOptions;
     private Home home;
     private List list;
     private SearchedProducts searchedProducts;
@@ -27,8 +30,10 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         homeButton = findViewById(R.id.imageButton1);
         listButton = findViewById(R.id.imageButton2);
+        menuOptions = findViewById(R.id.imageButton_menu);
         home = new Home();
         list = new List();
+
 
         FragmentTransaction principal = getSupportFragmentManager().beginTransaction();
         principal.add(R.id.fragment_principal, home);
@@ -53,6 +58,23 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_principal, list);
                 transaction.commit();
+            }
+        });
+
+        this.menuOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(MainActivity.this, menuOptions);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_list, popupMenu.getMenu());
+                popupMenu.show();
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
             }
         });
 

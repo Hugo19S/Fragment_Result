@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu_options">
+
+    <item
+        android:id="@+id/menu_option_1"
+        android:title="@string/listas" />
+
+    <item
+        android:id="@+id/menu_option_2"
+        android:title="@string/config" />
+
+    <item
+        android:id="@+id/menu_option_3"
+        android:title="@string/star" />
+
+    <item
+        android:id="@+id/menu_option_4"
+        android:title="@string/help" />
+</menu>
