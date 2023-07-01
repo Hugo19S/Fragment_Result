@@ -2,20 +2,25 @@ package com.example.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class GridAdapter extends BaseAdapter {
 
+    ProductDetails details;
+    private final FragmentManager fragmentManager;
     private final String[] imageNames;
     private final int[] imagePhotos;
     private final int isProduct;
@@ -24,8 +29,10 @@ public class GridAdapter extends BaseAdapter {
     private final LayoutInflater layoutInflater;
     private final Context context;
 
-    public GridAdapter(Context context, String[] imageNames, int[] imagePhotos, int isProduct, double[][] price, String[] category) {
+    public GridAdapter(Context context, String[] imageNames, int[] imagePhotos,
+                       int isProduct, double[][] price, String[] category, FragmentManager fragmentManager) {
         this.context = context;
+        this.fragmentManager = fragmentManager;
         this.imageNames = imageNames;
         this.imagePhotos = imagePhotos;
         this.isProduct = isProduct;
@@ -62,15 +69,24 @@ public class GridAdapter extends BaseAdapter {
                 holder.textView = convertView.findViewById(R.id.textView_items);
                 holder.imageView = convertView.findViewById(R.id.imageView_items);
 
-                ImageView imageView = convertView.findViewById(R.id.imageView_items);
-                /*imageView.setOnClickListener(v -> {
-                    Intent intent = new Intent(context, ProductDetails.class);
-                    intent.putExtra("imageResource", imagePhotos[position]);
-                    intent.putExtra("text", holder.textView.getText().toString());
-                    intent.putExtra("price", price[position]);
-                    intent.putExtra("category", category[position]);
-                    context.startActivity(intent);
-                });*/
+                LinearLayout layout = convertView.findViewById(R.id.linearLayout3);
+                layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("chave", "valor");
+
+                        details = new ProductDetails();
+                        details.setArguments(bundle);
+
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.fragment_principal, details);
+                        transaction.commit();
+                    }
+                });
+
+
             } else if (isProduct == 2) {
                 convertView = layoutInflater.inflate(R.layout.categories, parent, false);
                 holder.textView = convertView.findViewById(R.id.textView_categories);

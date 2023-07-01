@@ -3,15 +3,18 @@ package com.example.fragments;
 
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.SearchView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,8 +25,6 @@ import java.util.List;
 
 
 public class SearchedProducts extends Fragment {
-
-    //private SearchView searchView;
     private final String searchedTerm;
     private boolean control;
     private final List<String> searchedNamesProduct = new ArrayList<>();
@@ -46,22 +47,36 @@ public class SearchedProducts extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_searched_products, container, false);
 
-        readJson();
+        generatorProducts(view);
 
-        String[] finalSearchedNamesProduct = searchedNamesProduct.toArray(new String[0]);
-        int[] finalSearchedPhotoProduct = new int[searchedPhotoProduct.size()];
-        double[][] priceProductArray = new double[this.priceOfProducts.size()][this.priceOfProducts.get(0).length];
-        String[] finalCategories = this.categoryOfProducts.toArray(new String[0]);
-
-        for (int i = 0; i < finalSearchedPhotoProduct.length; i++) {
-            finalSearchedPhotoProduct[i] = searchedPhotoProduct.get(i);
-            priceProductArray[i] = this.priceOfProducts.get(i);
-        }
-
-        GridView gridView = view.findViewById(R.id.gridview_searchPage);
-        GridAdapter adapter = new GridAdapter(requireContext(), finalSearchedNamesProduct, finalSearchedPhotoProduct, 1, priceProductArray, finalCategories);
-        gridView.setAdapter(adapter);
         return view;
+    }
+
+    public void generatorProducts(View view) {
+
+        readJson();
+        if (this.searchedNamesProduct.size() == 0) {
+            ProductNotFound notFound = new ProductNotFound();
+            FragmentTransaction principal = requireActivity().getSupportFragmentManager().beginTransaction();
+            principal.replace(R.id.fragment_principal, notFound);
+            principal.commit();
+
+        } else {
+            String[] finalSearchedNamesProduct = searchedNamesProduct.toArray(new String[0]);
+            int[] finalSearchedPhotoProduct = new int[searchedPhotoProduct.size()];
+            double[][] priceProductArray = new double[this.priceOfProducts.size()][this.priceOfProducts.get(0).length];
+            String[] finalCategories = this.categoryOfProducts.toArray(new String[0]);
+
+            for (int i = 0; i < finalSearchedPhotoProduct.length; i++) {
+                finalSearchedPhotoProduct[i] = searchedPhotoProduct.get(i);
+                priceProductArray[i] = this.priceOfProducts.get(i);
+            }
+
+            GridView gridView = view.findViewById(R.id.gridview_searchPage);
+            GridAdapter adapter = new GridAdapter(requireContext(), finalSearchedNamesProduct, finalSearchedPhotoProduct,
+                    1, priceProductArray, finalCategories, getChildFragmentManager());
+            gridView.setAdapter(adapter);
+        }
     }
 
     public void readJson() {

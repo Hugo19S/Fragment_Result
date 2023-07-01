@@ -10,6 +10,18 @@
             android:layout_height="wrap_content"
             tools:context=".SearchedProducts">
 
+            <TextView
+                android:id="@+id/mais_procurados_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:shadowRadius="30"
+                android:text="@string/more"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <GridView
                 android:id="@+id/gridview_mainPage_1"
                 android:layout_width="match_parent"
@@ -29,6 +41,18 @@
 
             </GridView>
 
+            <TextView
+                android:id="@+id/catgorias_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/gridview_mainPage_1"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:shadowRadius="30"
+                android:text="@string/categoria"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <GridView
                 android:id="@+id/gridview_mainPage_2"
@@ -44,30 +68,6 @@
                 android:verticalSpacing="8dp">
 
             </GridView>
-
-            <TextView
-                android:id="@+id/mais_procurados_textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:shadowRadius="30"
-                android:text="Mais Procurados"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/catgorias_textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/gridview_mainPage_1"
-                android:paddingLeft="10dp"
-                android:shadowRadius="30"
-                android:text="Procurar por Categoria"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
         </RelativeLayout>
 </FrameLayout>

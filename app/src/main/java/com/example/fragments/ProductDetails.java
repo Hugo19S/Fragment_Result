@@ -1,25 +1,30 @@
 package com.example.fragments;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 public class ProductDetails extends Fragment {
 
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    private String mParam1;
+    private String mParam2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*if (getArguments() != null) {
+            mParam1 = getArguments().getString("chave");
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }*/
     }
 
     @Override
@@ -28,6 +33,7 @@ public class ProductDetails extends Fragment {
 
         ImageView imageView = view.findViewById(R.id.imageView_product);
         TextView textView = view.findViewById(R.id.textView6);
+        //textView.setText(this.mParam1);
         TextView textView9 = view.findViewById(R.id.textView9);
         TextView textView11 = view.findViewById(R.id.textView11);
         TextView textView12 = view.findViewById(R.id.textView12);

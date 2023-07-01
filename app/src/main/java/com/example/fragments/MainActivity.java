@@ -1,19 +1,17 @@
 package com.example.fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
@@ -31,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         homeButton = findViewById(R.id.imageButton1);
         listButton = findViewById(R.id.imageButton2);
         menuOptions = findViewById(R.id.imageButton_menu);
+
         home = new Home();
         list = new List();
 

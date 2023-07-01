@@ -8,7 +8,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 public class Home extends Fragment {
 
@@ -72,14 +74,24 @@ public class Home extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         GridView gridViewMostSearched = view.findViewById(R.id.gridview_mainPage_1);
-        GridAdapter gridAdapterMostSearched = new GridAdapter(requireContext(), namesProduct, photoProduct, 1, price, categoryOfProducts);
+        GridAdapter gridAdapterMostSearched = new GridAdapter(requireContext(), namesProduct, photoProduct,
+                1, price, categoryOfProducts, getChildFragmentManager());
         gridViewMostSearched.setAdapter(gridAdapterMostSearched);
 
         GridView gridViewCategories = view.findViewById(R.id.gridview_mainPage_2);
-        GridAdapter gridAdapterCategories = new GridAdapter(requireContext(), namesCategories, photoCategories, 2, null, null);
+        GridAdapter gridAdapterCategories = new GridAdapter(requireContext(), namesCategories, photoCategories,
+                2, null, null, getChildFragmentManager());
         gridViewCategories.setAdapter(gridAdapterCategories);
 
-        gridViewCategories.setOnItemClickListener((paren, view1, position, id)-> nextFrame(namesCategories[position], false));
+        gridViewCategories.setOnItemClickListener((paren, view1, position, id)->
+                nextFrame(namesCategories[position], false));
+
+        gridViewMostSearched.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }
