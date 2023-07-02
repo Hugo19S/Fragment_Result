@@ -1,6 +1,7 @@
 package com.example.fragments;
 
 import android.app.AlertDialog;
+import android.app.Person;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Xml;
@@ -14,9 +15,16 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlSerializer;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Arrays;
 
 public class SignUp extends Fragment {
@@ -37,11 +45,7 @@ public class SignUp extends Fragment {
 
         Button register = view.findViewById(R.id.button4);
         register.setOnClickListener(v -> {
-            create(v);
-            /*SigIn sigIn = new SigIn();
-            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_login, sigIn);
-            transaction.commit();*/
+            escreverJSON(requireContext());
         });
 
         //Accção para o botão cancelar
@@ -57,7 +61,34 @@ public class SignUp extends Fragment {
         return view;
     }
 
-    public void create(View view) {
+    public void escreverJSON(Context context) {
+        // Cria um objeto JSON
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("nome", "João");
+            jsonObject.put("idade", 25);
+            jsonObject.put("cidade", "São Paulo");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Converte o objeto JSON em uma string
+        String jsonString = jsonObject.toString();
+
+        // Cria um objeto de arquivo e especifica o caminho e nome do arquivo
+        File file = new File(context.getFilesDir(), "arquivo.json");
+
+        // Escreve os dados no arquivo
+        try {
+            FileWriter writer = new FileWriter(file);
+            writer.write(jsonString);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*public void create(View view) {
 
         if (validateCredential(view)) {
             Toast.makeText(requireContext(), "Existem campos vazios", Toast.LENGTH_SHORT).show();
@@ -141,5 +172,5 @@ public class SignUp extends Fragment {
 
         }
 
-    }
+    }*/
 }
