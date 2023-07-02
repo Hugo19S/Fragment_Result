@@ -25,6 +25,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-sdk tools:overrideLibrary="com.android.car.ui" />
 
 </manifest>

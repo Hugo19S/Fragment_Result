@@ -1,10 +1,8 @@
 package com.example.fragments;
 
 import android.app.AlertDialog;
-import android.app.Person;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +15,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlSerializer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.Arrays;
 
 public class SignUp extends Fragment {
@@ -45,7 +39,7 @@ public class SignUp extends Fragment {
 
         Button register = view.findViewById(R.id.button4);
         register.setOnClickListener(v -> {
-            escreverJSON(requireContext());
+            creatAccount(requireContext(), view);
         });
 
         //Accção para o botão cancelar
@@ -61,13 +55,50 @@ public class SignUp extends Fragment {
         return view;
     }
 
-    public void escreverJSON(Context context) {
+    public void creatAccount(Context context, View view) {
+
+        if (validateCredential(view)) {
+            writeToJson(context);
+        }
+    }
+
+    private boolean validateCredential(View view) {
+        EditText user_field = view.findViewById(R.id.editPersonName);
+        EditText email_field = view.findViewById(R.id.EmailAddress);
+        EditText password_field = view.findViewById(R.id.Password);
+        EditText passwordConfirm_field = view.findViewById(R.id.editPassword2);
+
+        String user = user_field.getText().toString();
+        String e_mail = email_field.getText().toString();
+        String passWord = password_field.getText().toString();
+        String passWordConfirm = passwordConfirm_field.getText().toString();
+
+        if (user.equals("") || e_mail.equals("") || passWord.equals("") || passWordConfirm.equals("")) {
+            Toast.makeText(requireContext(), "Existe campo vazio!", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            if (passWord.equals(passWordConfirm)) {
+                this.userName = user;
+                this.email = e_mail;
+                this.password = passWord;
+
+                return true;
+            }
+            else {
+                Toast.makeText(requireContext(), "Por favor confirma a sua senha!", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+    }
+
+    public void writeToJson(Context context) {
+
         // Cria um objeto JSON
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("nome", "João");
-            jsonObject.put("idade", 25);
-            jsonObject.put("cidade", "São Paulo");
+            jsonObject.put("userName", this.userName);
+            jsonObject.put("email", this.email);
+            jsonObject.put("password", this.password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -86,91 +117,21 @@ public class SignUp extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        dialogBox();
     }
 
-    /*public void create(View view) {
+    private void dialogBox() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(requireContext());
+        dialog.setTitle("Confirmação");
+        dialog.setMessage("A sua conta foi criado com sucesso!");
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("Ok", (dialogInterface, i) -> {
 
-        if (validateCredential(view)) {
-            Toast.makeText(requireContext(), "Existem campos vazios", Toast.LENGTH_SHORT).show();
-
-            try {
-                XmlSerializer xmlSerializer = Xml.newSerializer();
-                FileOutputStream fileOutputStream = requireContext().openFileOutput("arquivo.xml", Context.MODE_PRIVATE);
-                xmlSerializer.setOutput(fileOutputStream, "UTF-8");
-                xmlSerializer.startDocument(null, true);
-                xmlSerializer.startTag(null, "resources");
-
-                xmlSerializer.startTag(null, "string");
-                xmlSerializer.attribute(null, "name", "username");
-                xmlSerializer.text(this.userName);
-                xmlSerializer.endTag(null, "string");
-
-                xmlSerializer.startTag(null, "string");
-                xmlSerializer.attribute(null, "name", "email");
-                xmlSerializer.text(this.email);
-                xmlSerializer.endTag(null, "string");
-
-                xmlSerializer.startTag(null, "string");
-                xmlSerializer.attribute(null, "name", "password");
-                xmlSerializer.text(this.password);
-                xmlSerializer.endTag(null, "string");
-
-                xmlSerializer.endTag(null, "resources");
-                xmlSerializer.endDocument();
-                fileOutputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            AlertDialog.Builder dialog = new AlertDialog.Builder(requireContext());
-            dialog.setTitle("Confirmação");
-            dialog.setMessage("A sua conta foi criado com sucesso!");
-            dialog.setCancelable(false);
-            dialog.setPositiveButton("Ok", (dialogInterface, i) -> {
-
-                SigIn sigIn = new SigIn();
-                FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_login, sigIn);
-                transaction.commit();
-            });
-            dialog.create().show();
-
-        }
-
+            SigIn sigIn = new SigIn();
+            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_login, sigIn);
+            transaction.commit();
+        });
+        dialog.create().show();
     }
-
-    private boolean validateCredential(View view) {
-        EditText user_field = (EditText) view.findViewById(R.id.editPersonName);
-        EditText email_field = (EditText) view.findViewById(R.id.EmailAddress);
-        EditText password_field = (EditText) view.findViewById(R.id.Password);
-        EditText passwordConfirm_field = (EditText) view.findViewById(R.id.editPassword2);
-
-        String user = user_field.getText().toString();
-        String e_mail = email_field.getText().toString();
-        String passWord = password_field.getText().toString();
-        String passWordConfirm = passwordConfirm_field.getText().toString();
-
-        if (user.equals("") || e_mail.equals("") || passWord.equals("") || passWordConfirm.equals("")) {
-            Toast.makeText(requireContext(), "Existe campo vazio!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else {
-            if (passWord.equals(passWordConfirm)) {
-                this.userName = user;
-                this.email = e_mail;
-                this.password = passWord;
-                for (String s : Arrays.asList("user: " + user, "e_mail: " + e_mail, "passWord: " + passWord, "passWordConfirm: " + passWordConfirm)) {
-                    System.out.println(s);
-                }
-                return true;
-            }
-            else {
-                Toast.makeText(requireContext(), "Por favor confirma a sua senha!", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-
-
-        }
-
-    }*/
 }
