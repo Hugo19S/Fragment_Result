@@ -41,6 +41,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="0dp"
+        android:background="#EAE9E9"
         android:layout_alignEnd="@+id/linearLayout3"
         android:onClick="addProductToList"
         app:srcCompat="@drawable/baseline_add_circle_outline_24"
