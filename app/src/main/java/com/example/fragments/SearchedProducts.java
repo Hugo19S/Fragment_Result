@@ -30,8 +30,10 @@ public class SearchedProducts extends Fragment {
     private final boolean control;
     private final List<String> searchedNamesProduct = new ArrayList<>();
     private final List<Integer> searchedPhotoProduct = new ArrayList<>();
-    private final List<double[]> priceOfProducts = new ArrayList<>();
+    private final List<List<Double>> priceOfProducts = new ArrayList<>();
     private final List<String> categoryOfProducts = new ArrayList<>();
+
+    private Product product;
 
     public SearchedProducts(String searchedTerm, boolean control) {
         this.control = control;
@@ -48,6 +50,7 @@ public class SearchedProducts extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_searched_products, container, false);
 
+        product = new Product(requireContext());
         generatorProducts(view);
 
         return view;
@@ -55,86 +58,54 @@ public class SearchedProducts extends Fragment {
 
     public void generatorProducts(View view) {
 
-        readJson();
-        if (this.searchedNamesProduct.size() == 0) {
+        searchedProducts();
+        if (this.searchedPhotoProduct.size() == 0) {
             ProductNotFound notFound = new ProductNotFound();
             FragmentTransaction principal = requireActivity().getSupportFragmentManager().beginTransaction();
             principal.replace(R.id.fragment_principal, notFound);
             principal.commit();
 
         } else {
-            String[] finalSearchedNamesProduct = searchedNamesProduct.toArray(new String[0]);
-            int[] finalSearchedPhotoProduct = new int[searchedPhotoProduct.size()];
-            double[][] priceProductArray = new double[this.priceOfProducts.size()][this.priceOfProducts.get(0).length];
-            String[] finalCategories = this.categoryOfProducts.toArray(new String[0]);
-
-            for (int i = 0; i < finalSearchedPhotoProduct.length; i++) {
-                finalSearchedPhotoProduct[i] = searchedPhotoProduct.get(i);
-                priceProductArray[i] = this.priceOfProducts.get(i);
+            List<List<Double>> priceProductList = new ArrayList<>();
+            for (int i = 0; i < searchedNamesProduct.size(); i++) {
+                priceProductList.add(this.priceOfProducts.get(i));
             }
 
             GridView gridView = view.findViewById(R.id.gridview_searchPage);
-            GridAdapter adapter = new GridAdapter(requireContext(), finalSearchedNamesProduct, finalSearchedPhotoProduct,
-                    1, priceProductArray, finalCategories, requireActivity().getSupportFragmentManager());
+            GridAdapter adapter = new GridAdapter(requireContext(),searchedNamesProduct, searchedPhotoProduct, 1, priceProductList, categoryOfProducts, requireActivity().getSupportFragmentManager());
             gridView.setAdapter(adapter);
         }
     }
 
     @SuppressLint("DiscouragedApi")
-    public void readJson() {
+    public void searchedProducts() {
 
-        JSONArray jsonArray;
-        try {
-            AssetManager assetManager = requireContext().getAssets();
-            InputStream inputStream = assetManager.open("produtos.json");
+        for (int i = 0; i < product.getProductName().size(); i++) {
+            String item = "";
+            String name = "";
+            int resourceId = 0;
+            List<Double> prices = new ArrayList<>();
+            if (this.control) name = product.getProductName().get(i);
+            else name = product.getProductCategorty().get(i);
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            reader.close();
-
-            jsonArray = new JSONArray(stringBuilder.toString());
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String item;
-                String name;
-
-                if (this.control) name = jsonObject.get("name").toString();
-                else name = jsonObject.get("category").toString();
-
-                if (name.toLowerCase().contains(this.searchedTerm.toLowerCase())) {
-                    String photo = jsonObject.get("img").toString();
-                    double[] price = new double[3];
-                    price[0] = Double.parseDouble(jsonObject.get("price_continente").toString());
-                    price[1] = Double.parseDouble(jsonObject.get("price_pingoDoce").toString());
-                    price[2] = Double.parseDouble(jsonObject.get("price_intermarche").toString());
-
-                    double[] lowestPrice = Arrays.stream(price).sorted().toArray();
-
-                    item = jsonObject.get("name") + "\n" + "€ " + lowestPrice[0] + "\n" + "emb: " + jsonObject.get("embalagem");
-                    int resourceId = 0;
-
-                    String category = jsonObject.getString("category") + "\n" + jsonObject.getString("description");
-
-                    if (photo.startsWith("R.drawable.")) {
-                        String resourceName = photo.substring("R.drawable.".length());
-                        resourceId = getResources().getIdentifier(resourceName, "drawable", requireContext().getPackageName());
-                    }
-                    this.searchedNamesProduct.add(item);
-                    this.searchedPhotoProduct.add(resourceId);
-                    this.priceOfProducts.add(price);
-                    this.categoryOfProducts.add(category);
+            if (name.toLowerCase().contains(this.searchedTerm.toLowerCase())) {
+                String photo = product.getProductImage().get(i).toString();
+                if (photo.startsWith("R.drawable.")) {
+                    String resourceName = photo.substring("R.drawable.".length());
+                    resourceId = getResources().getIdentifier(resourceName, "drawable", requireContext().getPackageName());
+                }
+                item = product.getProductName().get(i) + "\n" + "€ " + product.getProductPrice().get(i).get(0) + "\n" + "emb: " + product.getProductEmb().get(i);
+                for (int j = 0; j < product.getProductPrice().get(0).size(); j++) {
+                    prices.add(product.getProductPrice().get(i).get(j));
                 }
 
+                String category = product.getProductCategorty().get(i) + "\n" + product.getProdcutDescription().get(i);
+
+                this.searchedPhotoProduct.add(resourceId);
+                this.priceOfProducts.add(prices);
+                this.searchedNamesProduct.add(item);
+                this.categoryOfProducts.add(category);
             }
-
-
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
         }
-
     }
 }

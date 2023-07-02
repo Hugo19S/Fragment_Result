@@ -1,13 +1,43 @@
 [
   {
-    "name": "Vinho Tinto Mingorra",
-    "price_continente": 5.99,
-    "price_pingoDoce": 7.99,
-    "price_intermarche": 4.99,
-    "img": "R.drawable.vinho",
+    "name": "Leite Magro",
+    "price_continente": 0.99,
+    "price_pingoDoce": 1.99,
+    "price_intermarche": 2.99,
+    "img": "R.drawable.leite",
     "category": "Bebidas",
+    "embalagem": "1 lt",
+    "description": "Um leite magro com baixo teor de gordura."
+  },
+  {
+    "name": "Agua Continente",
+    "price_continente": 2.49,
+    "price_pingoDoce": 1.49,
+    "price_intermarche": 0.59,
+    "img": "R.drawable.agua",
+    "category": "Bebidas",
+    "embalagem": "1L*6",
+    "description": "Água mineral pura e refrescante."
+  },
+  {
+    "name": "Café Continente fino",
+    "price_continente": 1.49,
+    "price_pingoDoce": 0.89,
+    "price_intermarche": 3.59,
+    "img": "R.drawable.cafe",
+    "category": "Mercearias",
+    "embalagem": "1 kg",
+    "description": "Um café fino e aromático para apreciadores exigentes."
+  },
+  {
+    "name": "Açucar Continente Branco",
+    "price_continente": 0.69,
+    "price_pingoDoce": 0.29,
+    "price_intermarche": 0.95,
+    "img": "R.drawable.acucar",
+    "category": "Mercearias",
     "embalagem": "garrafa 75 cl",
-    "description": "Um vinho tinto de alta qualidade com sabor encorpado e aromas intensos."
+    "description": "Açúcar branco refinado de alta qualidade para adoçar suas receitas."
   },
   {
     "name": "Leite Mimosa meio Gordo",
@@ -88,16 +118,6 @@
     "category": "Bebidas",
     "embalagem": "1 lt",
     "description": "Leite fresco e saboroso do Prado Verde, uma marca de confiança."
-  },
-  {
-    "name": "Açucar",
-    "price_continente": 1.39,
-    "price_pingoDoce": 1.35,
-    "price_intermarche": 1.29,
-    "img": "R.drawable.acucar",
-    "category": "Mercearias",
-    "embalagem": "1 kg",
-    "description": "Açúcar refinado de alta qualidade para adoçar suas receitas favoritas."
   },
   {
     "name": "Azeite Virgem Extra",

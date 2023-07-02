@@ -17,23 +17,26 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.List;
 import java.util.Objects;
 
 public class GridAdapter extends BaseAdapter {
 
     private final FragmentManager fragmentManager;
-    private final String[] imageNames;
-    private final int[] imagePhotos;
-    private final int isProduct;
-    private final double[][] price;
-    private final String[] category;
-    private final LayoutInflater layoutInflater;
-    private final Context context;
 
-    public GridAdapter(Context context, String[] imageNames, int[] imagePhotos,
-                       int isProduct, double[][] price, String[] category, FragmentManager fragmentManager) {
-        this.context = context;
+
+    private final Context context;
+    private final java.util.List<String> imageNames;
+    private final java.util.List<Integer> imagePhotos;
+    private final int isProduct;
+    private final java.util.List<java.util.List<Double>> price;
+
+    private final List<String > category;
+    private final LayoutInflater layoutInflater;
+
+    public GridAdapter(Context context, List<String> imageNames, List<Integer> imagePhotos, int isProduct, List<List<Double>> price, List<String> category, FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
+        this.context = context;
         this.imageNames = imageNames;
         this.imagePhotos = imagePhotos;
         this.isProduct = isProduct;
@@ -44,7 +47,7 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return imageNames.length;
+        return imageNames.size();
     }
 
     @Override
@@ -73,13 +76,11 @@ public class GridAdapter extends BaseAdapter {
                 LinearLayout layout = convertView.findViewById(R.id.linearLayout3);
                 layout.setOnClickListener(v -> {
 
-                    System.out.println(position);
-
                     Bundle bundle = new Bundle();
-                    bundle.putInt("imageResource", imagePhotos[position]);
+                    bundle.putInt("imageResource", imagePhotos.get(position));
                     bundle.putString("text", holder.textView.getText().toString());
-                    bundle.putDoubleArray("price", price[position]);
-                    bundle.putString("description", category[position]);
+                    bundle.putDoubleArray("price", price.get(position).stream().mapToDouble(Double::doubleValue).toArray());
+                    bundle.putString("category", category.get(position));
 
                     ProductDetails details = new ProductDetails();
                     details.setArguments(bundle);
@@ -117,9 +118,8 @@ public class GridAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.textView.setText(imageNames[position]);
-        holder.imageView.setImageResource(imagePhotos[position]);
-
+        holder.textView.setText(imageNames.get(position));
+        holder.imageView.setImageResource(imagePhotos.get(position));
         return convertView;
     }
 

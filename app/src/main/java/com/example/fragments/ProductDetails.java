@@ -26,7 +26,7 @@ public class ProductDetails extends Fragment {
             this.forImage = getArguments().getInt("imageResource");
             this.nameOfProduct = getArguments().getString("text");
             this.price = getArguments().getDoubleArray("price");
-            this.description = getArguments().getString("description");
+            this.description = getArguments().getString("category");
         }
     }
 
