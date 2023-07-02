@@ -99,7 +99,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/white"
-                android:src="@drawable/baseline_qr_code_scanner_24"
+                android:src="@drawable/favourite_icon_black"
                 android:contentDescription="@string/qr_code" />
 
             <ImageButton
