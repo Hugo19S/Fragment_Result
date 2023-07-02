@@ -1,11 +1,15 @@
 package com.example.fragments;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
@@ -17,6 +21,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
+    private SearchView searchView;
     private ImageButton homeButton, listButton, menuOptions, loginButton;
     private Home home;
     private List list;
@@ -76,9 +81,28 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         });
 
-        SearchView searchView = findViewById(R.id.searchView);
-        searchView.setOnQueryTextListener(this);
+        this.searchView = findViewById(R.id.searchView);
+        this.searchView.setOnQueryTextListener(this);
+    }
 
+    @Override
+    public void onBackPressed() {
+        // Verificar se o fragmento atual é o productDetails
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_principal) instanceof ProductDetails) {
+            // Voltar para o fragmento anterior
+            getSupportFragmentManager().popBackStack();
+        }
+        else {
+            //cria a caixa de dialogo
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Deseja sair?")
+                    .setPositiveButton("Sim", (dialog, id) -> MainActivity.super.onBackPressed())
+                    .setNegativeButton("Não", (dialog, id) -> {/*Não faz nada*/});
+
+            // Create the AlertDialog object and return it
+            builder.create().show();
+
+        }
     }
 
     public void addProductToList(View view) {
@@ -94,10 +118,21 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        searchedProducts = new SearchedProducts(query, true);
+        //fecha o teclado
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(this.searchView.getWindowToken(), 0);
+
+        // Remover o foco do SearchView
+        this.searchView.clearFocus();
+
+        this.searchedProducts = new SearchedProducts(query, true);
+
+        //Coloca o searchedProducts no fragment_principal
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_principal, searchedProducts);
         transaction.commit();
+
+
         return true;
     }
 

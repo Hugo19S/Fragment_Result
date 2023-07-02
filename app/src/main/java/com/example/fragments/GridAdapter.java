@@ -17,6 +17,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.Objects;
+
 public class GridAdapter extends BaseAdapter {
 
     private final FragmentManager fragmentManager;
@@ -71,6 +73,8 @@ public class GridAdapter extends BaseAdapter {
                 LinearLayout layout = convertView.findViewById(R.id.linearLayout3);
                 layout.setOnClickListener(v -> {
 
+                    System.out.println(position);
+
                     Bundle bundle = new Bundle();
                     bundle.putInt("imageResource", imagePhotos[position]);
                     bundle.putString("text", holder.textView.getText().toString());
@@ -81,7 +85,9 @@ public class GridAdapter extends BaseAdapter {
                     details.setArguments(bundle);
 
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.fragment_principal, details);
+                    transaction.add(R.id.fragment_principal, details);
+                    transaction.hide(Objects.requireNonNull(fragmentManager.findFragmentById(R.id.fragment_principal))); // Oculta o fragmento atual
+                    transaction.addToBackStack(null); //adiciona a transação do fragmento à pilha de volta (back stack)
                     transaction.commit();
                 });
 
