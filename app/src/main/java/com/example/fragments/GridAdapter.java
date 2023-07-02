@@ -19,7 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.List;
 import java.util.Objects;
-
+//
 public class GridAdapter extends BaseAdapter {
 
     private final FragmentManager fragmentManager;
