@@ -1,5 +1,6 @@
 package com.example.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
-    private ImageButton homeButton, listButton, menuOptions;
+    private ImageButton homeButton, listButton, menuOptions, loginButton;
     private Home home;
     private List list;
     private SearchedProducts searchedProducts;
@@ -26,55 +27,53 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        homeButton = findViewById(R.id.imageButton1);
-        listButton = findViewById(R.id.imageButton2);
-        menuOptions = findViewById(R.id.imageButton_menu);
+        this.homeButton = findViewById(R.id.imageButton1);
+        this.listButton = findViewById(R.id.imageButton2);
+        this.menuOptions = findViewById(R.id.imageButton_menu);
+        this.loginButton = findViewById(R.id.imageButton4);
 
-        home = new Home();
-        list = new List();
+        this.home = new Home();
+        this.list = new List();
 
 
         FragmentTransaction principal = getSupportFragmentManager().beginTransaction();
         principal.add(R.id.fragment_principal, home);
         principal.commit();
 
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setAnimation(v);
-                home = new Home();
-                FragmentTransaction principal = getSupportFragmentManager().beginTransaction();
-                principal.replace(R.id.fragment_principal, home);
-                principal.commit();
-            }
+        this.homeButton.setOnClickListener(view -> {
+            setAnimation(view);
+            home = new Home();
+            FragmentTransaction principal1 = getSupportFragmentManager().beginTransaction();
+            principal1.replace(R.id.fragment_principal, home);
+            principal1.commit();
         });
 
-        listButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setAnimation(v);
-                list = new List();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_principal, list);
-                transaction.commit();
-            }
+        this.listButton.setOnClickListener(view -> {
+            setAnimation(view);
+            list = new List();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_principal, list);
+            transaction.commit();
         });
 
-        this.menuOptions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(MainActivity.this, menuOptions);
-                popupMenu.getMenuInflater().inflate(R.menu.menu_list, popupMenu.getMenu());
-                popupMenu.show();
+        this.menuOptions.setOnClickListener(view -> {
+            PopupMenu popupMenu = new PopupMenu(MainActivity.this, menuOptions);
+            popupMenu.getMenuInflater().inflate(R.menu.menu_list, popupMenu.getMenu());
+            popupMenu.show();
 
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                });
-            }
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
+        });
+
+        this.loginButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
+
         });
 
         SearchView searchView = findViewById(R.id.searchView);

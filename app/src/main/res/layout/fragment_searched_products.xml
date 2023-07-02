@@ -38,7 +38,7 @@
         <GridView
             android:id="@+id/gridview_searchPage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/relative2"
             android:layout_marginBottom="0dp"
             android:background="#FFFFFF"
