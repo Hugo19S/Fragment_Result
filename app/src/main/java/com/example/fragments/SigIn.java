@@ -125,6 +125,7 @@ public class SigIn extends Fragment {
         if (this.email.equals(email_in) && this.password.equals(pass_in)) {
             Toast.makeText(requireContext(), "Login feito com sucesso!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(requireContext(), MainActivity.class);
+            intent.putExtra("userName", this.userName);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else {

@@ -38,8 +38,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/arrendondar2"
                 android:iconifiedByDefault="false"
-                android:imeOptions="actionSearch"
-                android:onClick="onSearch" />
+                android:imeOptions="actionSearch"/>
 
             <ImageButton
                 android:id="@+id/imageButton_menu"

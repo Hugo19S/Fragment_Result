@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             //cria a caixa de dialogo
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Deseja sair?")
-                    .setPositiveButton("Sim", (dialog, id) -> MainActivity.super.onBackPressed())
+                    .setPositiveButton("Sim", (dialog, id) -> System.exit(0))
                     .setNegativeButton("Não", (dialog, id) -> {/*Não faz nada*/});
 
             // Create the AlertDialog object and return it
